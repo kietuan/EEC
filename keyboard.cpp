@@ -16,7 +16,6 @@ void queue<T>::push(T value) //thêm vào tail, xóa ở head
         tail = p;
     }
     size++;
-
 }
 
 template<typename T>
@@ -63,13 +62,31 @@ bool queue<T>::isEmpty() const
 }
 
 
-//----------------------------------------------------------------------hàm cho Keyboard-------------------------------------------------------------------
-Keyboard::init (uint8_t data_pin, uint8_t clk_pin = 3) : buffer{}
+//----------------------------------------------------------------------hàm cho ps2keyboard-------------------------------------------------------------------
+ps2keyboard::init (uint8_t data_pin, uint8_t clk_pin = 3) : buffer{}
 {
     pinMode(clk_pin, INPUT_PULLUP);
     pinMode(data_pin, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
 }
+ 
+void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy lên màn hình, Nhận scancode, xuất ra mã ascii
+{
+    if (scancode == ) //nếu gặp enter thì đẩy ra hết
+    {
+
+    }
+    else
+    {
+
+    }
+}
+
+bool ps2keyboard::available() const
+{
+    return !(buffer.isEmpty());
+}
+
 
 void ps2interrupt()
 {
@@ -84,25 +101,25 @@ void ps2interrupt()
 
     bit = digitalRead(data_pin); //giá trị bit đã đọc được để đưa vào
     currentTime = micros();
-    if (curentTime - prevTime > 500) //hết thời gian cho 1 chu kỳ, ở đây có thể xuất hiện bug, read https://www.networktechinc.com/ps2-prots.html https://www.sra.uni-hannover.de/Lehre/WS21/L_BST/doc/ps2.html
+    if (currentTime - prevTime > 500) //hết thời gian cho 1 chu kỳ, ở đây có thể xuất hiện bug, read https://www.networktechinc.com/ps2-prots.html https://www.sra.uni-hannover.de/Lehre/WS21/L_BST/doc/ps2.html
     {
         scancode = 0;
         bitcount = 0;
         rawvalue = 0;
     }
 
-    rawValue |= (bit << bitcount);
+    rawvalue |= (bit << bitcount);
     bitcount++;
     if (bitcount == 11) //hết 1 gói bits
     {
         rawvalue &= 0b0000001111111100;
         scancode = rawvalue >> 2;
-        keyboard.buffer.push(scancode);
+        //chuyển scancode này thành ascii rồi lưu vào buffer. nếu = 0 thì thôi đừng lưu, như vậy thì chỉ có 1 lần nhất là được ghi, lần nhả không ghi
+        keyboard.push(scancode);
 
         rawvalue = 0;
         scancode = 0;
         bitcount = 0;
-    }
-
-    
+    }    
 }
+

@@ -1,16 +1,19 @@
 #ifndef PS2_KEYBOARD
 #define PS2_KEYBOARD
 
-//#include <Arduino.h>
+#include <Arduino.h>
+#include "LiquidCrystal.h"
+
 #define PS2_KEYMAP_SIZE 38
 #define CLK_PERIOD
 
-class Keyboard;
-Keyboard keyboard; //1 biến global dùng để lưu trữ 1 bàn phím hiện tại
+class ps2keyboard;
+ps2keyboard keyboard; //1 biến global dùng để lưu trữ 1 bàn phím hiện tại
 
 template<typename T>
 class queue //thêm vào tail, xóa ở head
 {
+    friend class ps2keyboard;
 private:
     class node;
 
@@ -25,7 +28,7 @@ public: //Methods
     T        front()   const;
     T        back()    const;
     bool     isEmpty() const;
-    
+private:
     void clear();
     void pop();
     void push(T value);
@@ -42,7 +45,7 @@ public:
 
 
 
-class Keyboard //object xử lý input
+class ps2keyboard //object xử lý input
 {
     friend void ps2interrupt();
 
@@ -51,10 +54,12 @@ public:
     //keyboard (uint8_t data_pin, uint8_t clk_pin);
 
     void    init(uint8_t data_pin, uint8_t clk_pin);
-    bool    available() const; //Nếu sẵn có chữ trong buffers để đọc
+    void    push (uint8_t);
     void    clear();
     int     read(); //đọc ký tự tiếp theo chỉ khi gặp trúng được _ENTER
     uint8_t readScanCode() const;
+    bool    available() const; //Nếu sẵn có chữ trong buffers để đọc
+
 
 private:
 };
