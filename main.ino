@@ -1,21 +1,24 @@
-#include "keyboard.h"
-#include "LiquidCrystal.h"
-#include "morseEncoder.h"
+#include "main.h"
 
 
 void setup() 
 {
-    keyboard.init(4,3);
+    keyboard.init(); //khởi tạo
+    pinMode(output_pin, OUPUT);
+    digitalWrite(output_pin, LOW);
+    lcd.begin(16,2); //dimension
+    lcd.setCursor(0,0);
+    lcd.cursor();
+    lcd.blink();
 }
 
 void loop() 
 {
-    while(keyboard.available())
+    if(keyboard.available())
     {
-        if (keyboard.buffer.back() == _ENTER)
+        if (keyboard.buffer.back() == 0x0d) //gặp enter
         {
-            
-            continue;
+            keyboard.transmitData();
         }
     }
 }
