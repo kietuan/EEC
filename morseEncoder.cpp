@@ -1,28 +1,22 @@
 #include "morseEncoder.h"
 
-const int led = 13;
-const int buz = 8;
 String code = "";
 int len = 0;
 char ch;
-char new_char;
-int unit_delay = 250;
+char new_char; 
+extern int const unit_delay = 50; //ms
 void dot() {
-    Serial.print(".");
-    digitalWrite(led, HIGH);
-    digitalWrite(buz, HIGH);
+    digitalWrite(output_pin, HIGH);
     delay(unit_delay);
-    digitalWrite(led, LOW);
-    digitalWrite(buz, LOW);
+
+    digitalWrite(output_pin, LOW);
     delay(unit_delay);
 }
 void dash() {
-    Serial.print("-");
-    digitalWrite(led, HIGH);
-    digitalWrite(buz, HIGH);
+    digitalWrite(output_pin, HIGH);
     delay(unit_delay * 3);
-    digitalWrite(led, LOW);
-    digitalWrite(buz, LOW);
+
+    digitalWrite(output_pin, LOW);
     delay(unit_delay);
 }
 
@@ -349,7 +343,7 @@ void _9() {
     dot();
     delay(unit_delay);
 }
-void zero() {
+void _0() {
     dash();
     delay(unit_delay);
     dash();
@@ -361,6 +355,14 @@ void zero() {
     dash();
     delay(unit_delay);
 }
+
+void _space()
+{
+    digitalWrite(output_pin, LOW);
+    delay (7 * unit_delay);
+}
+
+/*
 void morse() {
     if (ch == 'A' || ch == 'a') {
         A();
@@ -499,3 +501,4 @@ void loop() {
     }
     delay(1000);
 }
+*/

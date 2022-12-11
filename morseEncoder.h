@@ -2,7 +2,11 @@
 #define _MORSE_ENCODER
 
 #include <Arduino.h>
-extern const int output_pin;
+
+#ifndef output_pin
+#define output_pin 1
+#endif
+
 String code = "";
 int len = 0;
 char ch;
@@ -49,6 +53,7 @@ void _7();
 void _8();
 void _9();
 
+void _space();
 
 
 #endif
