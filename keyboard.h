@@ -25,13 +25,13 @@ public: //Methods
     queue(): head{nullptr}, tail{nullptr}; size{0} {}
 
     uint8_t getSize() const;
-    T        front()   const;
-    T        back()    const;
+    T        front()   const; //xem ở đầu
+    T        back()    const; //xem ở cuối
     bool     isEmpty() const;
-private:
     void clear();
-    void pop();
-    void push(T value);
+    void pop_back();   //xóa ở cuối
+    void pop();        //xóa ở đầu
+    void push(T value); //thêm vào cuối
 };
 
 template<typename T>
@@ -49,7 +49,7 @@ class ps2keyboard //object xử lý input
 {
     friend void ps2interrupt();
 
-    queue<uint8_t> buffer{}; //chứa các chữ đã được xử lý
+    queue<char> buffer{}; //chứa các chữ đã được xử lý
 public:
     //keyboard (uint8_t data_pin, uint8_t clk_pin);
 
