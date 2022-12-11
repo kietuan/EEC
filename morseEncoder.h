@@ -2,7 +2,12 @@
 #define _MORSE_ENCODER
 
 #include <Arduino.h>
-
+extern const int output_pin;
+String code = "";
+int len = 0;
+char ch;
+char new_char; 
+extern int const unit_delay;
 
 void dot();
 void dash();
@@ -33,6 +38,7 @@ void x();
 void y();
 void z();
 
+void _0();
 void _1();
 void _2();
 void _3();
