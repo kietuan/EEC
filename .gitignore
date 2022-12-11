@@ -9,3 +9,5 @@ Arduino.h
 .vscode
 BTL_MDDT.ino
 Altium/
+
+*.zip
