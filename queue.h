@@ -1,10 +1,10 @@
+
 #ifndef QUEUE_
 #define QUEUE_
 
 template<typename T>
 class queue //thêm vào tail, xóa ở head
 {
-    //friend class ps2keyboard;
 private:
     class node;
 
@@ -15,14 +15,14 @@ private:
 public: //Methods
     queue(): head{nullptr}, tail{nullptr}, size{0} {}
 
-    uint8_t getSize() const;
+    uint8_t  getSize() const;
     T        front()   const; //xem ở đầu
     T        back()    const; //xem ở cuối
     bool     isEmpty() const;
-    void clear();
-    void pop_back();   //xóa ở cuối
-    void pop();        //xóa ở đầu
-    void push(T value); //thêm vào cuối
+    void     clear();
+    void     pop_back();   //xóa ở cuối
+    void     pop();        //xóa ở đầu
+    void     push(T value); //thêm vào cuối
 };
 
 template<typename T>

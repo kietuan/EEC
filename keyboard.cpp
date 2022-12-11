@@ -1,23 +1,21 @@
 #include "keyboard.h"
 
-LiquidCrystal lcd(lcd_rs,lcd_e,lcd_d4,lcd_d5,lcd_d6,lcd_d7);
-lcd.begin(16,2); //dimension
-lcd.setCursor(0,0);
+LiquidCrystal lcd(lcd_rs,lcd_e,lcd_d4,lcd_d5,lcd_d6,lcd_d7); //khởi tạo
 
-ps2keyboard keyboard;
+ps2keyboard keyboard; //định nghĩa
 
-
+uint8_t numOfChars = 0; //dùng để theo dõi số ký tự trên màn hình hiện tại
  
 void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy lên màn hình, Nhận scancode, xuất ra mã ascii
 {
     char character = 0;
     switch (scancode)
     {
-        case 0x1c: //Enter
-            return;
-        case 0x0e: //backspace
-            keyboard.buffer.pop_back();
-            return;
+        case 0x1c: //Enter //bắt đầu xả ra, nhưng không thể làm bằng interupt được
+            character = 0x0d; break;
+        //case 0x0e: //backspace
+        //    keyboard.buffer.pop_back();
+        //    return;
 
         case 0x0b:
             character = '0'; break;
@@ -97,26 +95,23 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
 
     if (character) //bắt đầu viết lên
     {
-        keyboard.buffer.push(character);
+        keyboard.buffer.push(character); //vô buffer
 
-        //bắt đầu ghi ra màn hình
+        if (character == 0x0d) return;
+
+        //bắt đầu ghi ra màn hình theo thứ tự từ trái qua và trên xuống dưới
+        if (numOfChars == 32)
+        {
+            lcd.clear();
+            numOfChars = 0;
+        }
+
+        lcd.write(character);
+        numOfChars++;
+        if (numOfChars == 16) lcd.setCursor(0,1);
+        
 
     }
-}
-
-
-ps2keyboard::ps2keyboard() : buffer{}
-{
-    pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
-    pinMode(data_pin, INPUT_PULLUP);
-    pinMode(output_pin, OUTPUT);
-    digitalWrite(output_pin, LOW);
-    attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
-}
-
-bool ps2keyboard::available() const
-{
-    return !(buffer.isEmpty());
 }
 
 
@@ -155,3 +150,72 @@ void ps2interrupt()
     }    
 }
 
+void ps2keyboard::init(uint8_t clk = clk_pin, uint8_t data = data_pin)
+{
+    pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
+    pinMode(data_pin, INPUT_PULLUP);
+    pinMode(output_pin, OUTPUT);
+    digitalWrite(output_pin, LOW);
+    attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
+}
+
+bool ps2keyboard::available() const
+{
+    return !(buffer.isEmpty());
+}
+
+ void ps2keyboard::transmitData()
+{
+    if (keyboard.buffer.back() != 0x0d) return;
+
+    keyboard.buffer.pop_back(); //xóa ở cuối
+    while( !keyboard.buffer.isEmpty() )
+    {
+        char c = keyboard.buffer.front();
+        switch(c)
+        {
+            case 'q': q(); break;
+            case 'w': w(); break;
+            case 'e': e(); break;
+            case 'r': r(); break;
+            case 't': t(); break;
+            case 'y': y(); break;
+            case 'u': u(); break;
+            case 'i': i(); break;
+            case 'o': o(); break;
+            case 'p': p(); break;
+            case 'a': a(); break;
+            case 's': s(); break;
+            case 'd': d(); break;
+            case 'f': f(); break;
+            case 'g': g(); break;
+            case 'h': h(); break;
+            case 'j': j(); break;
+            case 'k': k(); break;
+            case 'l': l(); break;
+            case 'z': z(); break;
+            case 'x': x(); break;
+            case 'c': c(); break;
+            case 'v': v(); break;
+            case 'b': b(); break;
+            case 'n': n(); break;
+            case 'm': m(); break;
+            case ' ': _space();  break; 
+            case '0': _0(); break;
+            case '1': _1(); break;
+            case '2': _2(); break;
+            case '3': _3(); break;
+            case '4': _4(); break;
+            case '5': _5(); break;
+            case '6': _6(); break;
+            case '7': _7(); break;
+            case '8': _8(); break;
+            case '9': _9(); break;
+        }
+
+        keyboard.buffer.pop();
+    }
+
+    lcd.clear();
+    numOfChars = 0;
+}
