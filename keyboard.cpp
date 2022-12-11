@@ -1,98 +1,12 @@
 #include "keyboard.h"
 
+LiquidCrystal lcd(lcd_rs,lcd_e,lcd_d4,lcd_d5,lcd_d6,lcd_d7);
+lcd.begin(16,2); //dimension
+lcd.setCursor(0,0);
 
-//---------------------------------------------------------một số hàm của Queue----------------------------------------------------
-template<typename T>
-void queue<T>::push(T value) //thêm vào tail, xóa ở head
-{
-    auto p = new node(value);
-    if (!head && !tail)
-    {
-        head = tail = p;
-    }
-    else
-    {
-        tail->next = p;
-        tail = p;
-    }
-    size++;
-}
-
-template<typename T>
-void queue<T>::pop()
-{
-    if (size == 0) return;
-    if (tail == head)
-    {
-        delete tail;
-        tail = head = nullptr;
-        size = 0;
-    }
-    else
-    {
-        T* temp = head;
-        head = head->next;
-        delete temp;
-        size--;
-    }
-}
-
-template<typename T>
-void queue<T>::pop_back()
-{
-    if (size == 0) return;
-    if (tail == head)
-    {
-        delete tail;
-        tail = head = nullptr;
-        size = 0;
-    }
-    else
-    {
-        T* temp = head;
-        while (temp->next != tail) temp = temp->next;
-
-        delete tail;
-        temp->next = nullptr;
-        tail = temp;
-        temp->next = nullptr;
-        size--;
-    }
-}
-
-template<typename T>
-T queue<T>::front() const
-{
-    return head->data;
-}
-
-template<typename T>
-T queue<T>::back() const
-{
-    return tail->data;
-}
-
-template<typename T>
-uint8_t queue<T>::getSize() const
-{
-    return this->size;
-}
-
-template<typename T>
-bool queue<T>::isEmpty() const
-{
-    if (size == 0) return true;
-    else           return false;
-}
+ps2keyboard keyboard;
 
 
-//----------------------------------------------------------------------hàm cho ps2keyboard-------------------------------------------------------------------
-ps2keyboard::init (uint8_t data_pin, uint8_t clk_pin = 3) : buffer{}
-{
-    pinMode(clk_pin, INPUT_PULLUP);
-    pinMode(data_pin, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
-}
  
 void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy lên màn hình, Nhận scancode, xuất ra mã ascii
 {
@@ -102,6 +16,7 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
         case 0x1c: //Enter
             return;
         case 0x0e: //backspace
+            keyboard.buffer.pop_back();
             return;
 
         case 0x0b:
@@ -183,7 +98,20 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
     if (character) //bắt đầu viết lên
     {
         keyboard.buffer.push(character);
+
+        //bắt đầu ghi ra màn hình
+
     }
+}
+
+
+ps2keyboard::ps2keyboard() : buffer{}
+{
+    pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
+    pinMode(data_pin, INPUT_PULLUP);
+    pinMode(output_pin, OUTPUT);
+    digitalWrite(output_pin, LOW);
+    attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
 }
 
 bool ps2keyboard::available() const
