@@ -29,7 +29,7 @@ void queue<T>::pop()
     }
     else
     {
-        T* temp = head;
+        node* temp = head;
         head = head->next;
         delete temp;
         size--;
@@ -48,7 +48,7 @@ void queue<T>::pop_back()
     }
     else
     {
-        T* temp = head;
+        node* temp = head;
         while (temp->next != tail) temp = temp->next;
 
         delete tail;
@@ -95,3 +95,5 @@ bool queue<T>::isEmpty() const
     if (size == 0) return true;
     else           return false;
 }
+
+template class queue<char>;
