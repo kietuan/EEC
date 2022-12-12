@@ -13,9 +13,11 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
     {
         case 0x1c: //Enter //bắt đầu xả ra, nhưng không thể làm bằng interupt được
             character = 0x0d; break;
-        //case 0x0e: //backspace
-        //    keyboard.buffer.pop_back();
-        //    return;
+        case 0x0e: //backspace
+            keyboard.buffer.clear();
+            lcd.clear();
+            numOfChars = 0;
+            return;
 
         case 0x0b:
             character = '0'; break;

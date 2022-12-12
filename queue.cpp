@@ -60,6 +60,18 @@ void queue<T>::pop_back()
 }
 
 template<typename T>
+void queue<T>::clear()
+{
+    while (!this->isEmpty())
+    {
+        this->pop();
+    }
+
+    this->size = 0;
+    this->head = this->tail = nullptr;
+}
+
+template<typename T>
 T queue<T>::front() const
 {
     return head->data;
