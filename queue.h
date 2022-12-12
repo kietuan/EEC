@@ -2,6 +2,8 @@
 #ifndef QUEUE_
 #define QUEUE_
 
+#include <stdint.h>
+
 template<typename T>
 class queue //thêm vào tail, xóa ở head
 {
@@ -33,6 +35,5 @@ public:
     node* next{};
     node (T value): data{value}, next{nullptr} {}
 };
-
 
 #endif
