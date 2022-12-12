@@ -120,7 +120,6 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
 void ps2interrupt()
 {
     static uint8_t bitcount = 0; //số bit đã được đọc, tức là hiện tại đang có trong rawvalue
-    static uint8_t incoming = 0;
     static uint8_t scancode = 0; 
     static int16_t rawvalue = 0;
 
@@ -154,8 +153,8 @@ void ps2interrupt()
 
 void ps2keyboard::init(uint8_t clk , uint8_t data)
 {
-    pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
-    pinMode(data_pin, INPUT_PULLUP);
+    pinMode(clk, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
+    pinMode(data, INPUT_PULLUP);
     pinMode(output_pin, OUTPUT);
     digitalWrite(output_pin, LOW);
     attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
@@ -197,7 +196,7 @@ bool ps2keyboard::available() const
             case 'l': l(); break;
             case 'z': z(); break;
             case 'x': x(); break;
-            case 'c': c(); break;
+            case 'c': _c(); break;
             case 'v': v(); break;
             case 'b': b(); break;
             case 'n': n(); break;
