@@ -9,4 +9,3 @@ zip: clean
 
 clean:
 	rm project.zip
-	rm -rf project
