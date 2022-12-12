@@ -1,7 +1,7 @@
 #ifndef PS2_KEYBOARD
 #define PS2_KEYBOARD
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 
 #include <stdint.h>
@@ -36,7 +36,7 @@ public:
 
     ps2keyboard() : buffer{} {};
 
-    void    init(uint8_t clk = clk_pin, uint8_t data = data_pin);
+    void    init();
     void    push (uint8_t);
     void    clear();
     int     read(); //đọc ký tự tiếp theo chỉ khi gặp trúng được _ENTER

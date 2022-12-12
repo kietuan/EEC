@@ -151,10 +151,10 @@ void ps2interrupt()
     }    
 }
 
-void ps2keyboard::init(uint8_t clk , uint8_t data)
+void ps2keyboard::init()
 {
-    pinMode(clk, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
-    pinMode(data, INPUT_PULLUP);
+    pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
+    pinMode(data_pin, INPUT_PULLUP);
     pinMode(output_pin, OUTPUT);
     digitalWrite(output_pin, LOW);
     attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
@@ -169,6 +169,7 @@ bool ps2keyboard::available() const
 {
     if (keyboard.buffer.back() != 0x0d) return;
 
+    detachInterrupt(digitalPinToInterrupt(clk_pin));
     keyboard.buffer.pop_back(); //xóa ở cuối
     while( !keyboard.buffer.isEmpty() )
     {
@@ -219,4 +220,5 @@ bool ps2keyboard::available() const
 
     lcd.clear();
     numOfChars = 0;
+    attachInterrupt(digitalPinToInterrupt(clk_pin), ps2interrupt, FALLING);
 }
