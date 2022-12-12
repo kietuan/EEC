@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #include "lcd.h"
 #include "morseEncoder.h"
+#include "queue.h"
 
 #define PS2_KEYMAP_SIZE 38
 #define CLK_PERIOD
