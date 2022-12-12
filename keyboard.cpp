@@ -152,7 +152,7 @@ void ps2interrupt()
     }    
 }
 
-void ps2keyboard::init(uint8_t clk = clk_pin, uint8_t data = data_pin)
+void ps2keyboard::init(uint8_t clk , uint8_t data)
 {
     pinMode(clk_pin, INPUT_PULLUP); //Khởi tạo ngay từ lúc một biến được tạo ra
     pinMode(data_pin, INPUT_PULLUP);

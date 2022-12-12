@@ -28,9 +28,9 @@ class ps2keyboard //object xử lý input
 public:
     queue<char> buffer{}; //chứa các chữ đã được xử lý
 
-    ps2keyboard() : buffer{};
+    ps2keyboard() : buffer{} {};
 
-    void    init(uint8_t clk, uint8_t data);
+    void    init(uint8_t clk = clk_pin, uint8_t data = data_pin);
     void    push (uint8_t);
     void    clear();
     int     read(); //đọc ký tự tiếp theo chỉ khi gặp trúng được _ENTER
