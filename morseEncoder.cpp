@@ -1,9 +1,9 @@
 #include "morseEncoder.h"
 
-String code = "";
-int len = 0;
-char ch;
-char new_char; 
+//String code = "";
+//int len = 0;
+//char ch;
+//char new_char; 
 extern int const unit_delay = 50; //ms
 void dot() {
     digitalWrite(output_pin, HIGH);
@@ -36,7 +36,7 @@ void b() {
     dot();
     delay(unit_delay);
 }
-void c() {
+void _c() {
     dash();
     delay(unit_delay);
     dot();

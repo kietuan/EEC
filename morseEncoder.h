@@ -7,10 +7,10 @@
 #define output_pin 1
 #endif
 
-String code = "";
-int len = 0;
-char ch;
-char new_char; 
+//String code = "";
+//int len = 0;
+//char ch;
+//char new_char; 
 extern int const unit_delay;
 
 void dot();
@@ -18,7 +18,7 @@ void dash();
 
 void a();
 void b();
-void c();
+void _c();
 void d();
 void e();
 void f();
@@ -41,6 +41,8 @@ void w();
 void x();
 void y();
 void z();
+void t();
+void u();
 
 void _0();
 void _1();
