@@ -63,6 +63,8 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
             character = 'k'; break;
         case 0x4b:
             character = 'l'; break;
+        case 0x31:
+            character = 'n'; break;
         case 0x3a:
             character = 'm'; break;
         case 0x44:
