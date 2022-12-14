@@ -4,7 +4,7 @@
 //int len = 0;
 //char ch;
 //char new_char; 
-extern int const unit_delay = 150; //ms
+extern int const unit_delay = 100; //ms
 void dot() {
     //Serial.print(".");
     digitalWrite(output_pin, HIGH);
