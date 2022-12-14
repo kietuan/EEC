@@ -32,7 +32,7 @@ class ps2keyboard //object xử lý input
 {
     friend void ps2interrupt();
 public:
-    queue<uint8_t> buffer{}; //chứa các chữ đã được xử lý
+    queue<char> buffer{}; //chứa các chữ đã được xử lý
 
     ps2keyboard() : buffer{} {};
 
