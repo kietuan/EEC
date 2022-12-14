@@ -131,7 +131,7 @@ void ps2interrupt()
     static unsigned long prevTime = 0;
 
     unsigned long currentTime = millis();;
-    uint8_t bit = digitalRead(DATA); //giá trị bit đã đọc được để đưa vào
+    uint8_t bit = digitalRead(data_pin); //giá trị bit đã đọc được để đưa vào
 
     if (currentTime - prevTime > 250) //hết thời gian cho 1 chu kỳ, ở đây có thể xuất hiện bug, read https://www.networktechinc.com/ps2-prots.html https://www.sra.uni-hannover.de/Lehre/WS21/L_BST/doc/ps2.html
     {
@@ -153,6 +153,7 @@ void ps2interrupt()
             keyboard.buffer.push(scancode);
         }
         prevScancode = scancode;
+        //Serial.println(scancode, HEX);
 
         rawvalue = 0;
         scancode = 0;
