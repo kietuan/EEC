@@ -4,8 +4,9 @@ LiquidCrystal lcd(lcd_rs,lcd_e,lcd_d4,lcd_d5,lcd_d6,lcd_d7); //khởi tạo
 
 ps2keyboard keyboard; //định nghĩa
 
-uint8_t numOfChars = 0; //dùng để theo dõi số ký tự trên màn hình hiện tại
- 
+//uint8_t numOfChars = 0; //dùng để theo dõi số ký tự trên màn hình hiện tại
+
+/*
 void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy lên màn hình, Nhận scancode, xuất ra mã ascii
 {
     char character = 0;
@@ -119,6 +120,7 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
         
     }
 }
+*/
 
 void ps2interrupt()
 {
@@ -146,9 +148,9 @@ void ps2interrupt()
     {   
         scancode = (rawvalue >> 1) & 0x00ff; //chuyển được về thứ cần có
         //Serial.println(scancode, HEX);
-        if (prevScancode != 0xf0) //bắt đầu push vào cái queue.
+        if (prevScancode != 0xf0) //bắt đầu push vào cái queue, những tín hiệu chưa được xử lý
         {
-
+            keyboard.buffer.push(scancode);
         }
         prevScancode = scancode;
 
