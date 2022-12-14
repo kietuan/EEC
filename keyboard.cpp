@@ -101,21 +101,7 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
     if (character) //bắt đầu viết lên
     {
         keyboard.buffer.push(character); //vô buffer
-        Serial.println(character, HEX);
-        //if (character == 0x0d) return;
-
-        //bắt đầu ghi ra màn hình theo thứ tự từ trái qua và trên xuống dưới
-        
-        /*if (numOfChars == 32)
-        {
-            lcd.clear();
-            numOfChars = 0;
-        }
-
-        lcd.write(character);
-        numOfChars++;
-        if (numOfChars == 16) lcd.setCursor(0,1);
-        */
+        //Serial.println(character);
     }
 }
 
