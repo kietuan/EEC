@@ -148,12 +148,13 @@ void ps2interrupt()
     {   
         scancode = (rawvalue >> 1) & 0x00ff; //chuyển được về thứ cần có
         //Serial.println(scancode, HEX);
-        if (prevScancode != 0xf0) //bắt đầu push vào cái queue, những tín hiệu chưa được xử lý
+        if (prevScancode != 0xf0 && scancode != 0xf0) //bắt đầu push vào cái queue, những tín hiệu chưa được xử lý; loại bỏ tín hiệu break và 0xf0
         {
             keyboard.buffer.push(scancode);
+            Serial.println(scancode, HEX);
         }
         prevScancode = scancode;
-        //Serial.println(scancode, HEX);
+        
 
         rawvalue = 0;
         scancode = 0;
