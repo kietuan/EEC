@@ -18,6 +18,7 @@ void setup()
 
 void loop() 
 {
+  /*
     if(keyboard.available())
     {
         if (keyboard.buffer.back() == 0x0d) //gặp enter
@@ -25,4 +26,5 @@ void loop()
             keyboard.transmitData();
         }
     }
+  */
 }
