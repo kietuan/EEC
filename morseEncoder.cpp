@@ -4,7 +4,7 @@
 //int len = 0;
 //char ch;
 //char new_char; 
-extern int const unit_delay = 50; //ms
+extern int const unit_delay = 150; //ms
 void dot() {
     //Serial.print(".");
     digitalWrite(output_pin, HIGH);
@@ -24,344 +24,250 @@ void dash() {
 
 void a() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+
+    delay(2 * unit_delay); //tổng cộng là 3 lần
 }
 void b() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2 * unit_delay);
 }
 void _c() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay( 2 * unit_delay);
 }
 void d() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay( 2 * unit_delay);
 }
 void e() {
     dot();
-    delay(unit_delay);
+    delay(2 * unit_delay);
 }
 void f() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay( 2 * unit_delay);
 }
 void g() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void h() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2 * unit_delay);
 }
 void i() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2 * unit_delay);
 }
 void j() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void k() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void l() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void m() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void n() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void o() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void p() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
+    delay(2*unit_delay);
 }
 void q() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void r() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void s() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void t() {
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void u() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void v() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void w() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(2*unit_delay);
 }
 void x() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void y() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void z() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _1() {
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _2() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _3() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _4() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _5() {
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _6() {
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _7() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _8() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _9() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dot();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 void _0() {
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
     dash();
-    delay(unit_delay);
+    delay(unit_delay*2);
 }
 
 void _space()
 {
     digitalWrite(output_pin, LOW);
-    delay (7 * unit_delay);
+    delay (4 * unit_delay); // cộng thêm 3 giây delay sau mỗi từ
 }
 
 /*
