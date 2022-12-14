@@ -3,6 +3,10 @@
 
 void setup() 
 {
+    Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
+    Serial.println("Hello Computer");
+    a();b();_c();
+
     keyboard.init(); //khởi tạo
     pinMode(output_pin, OUTPUT);
     digitalWrite(output_pin, LOW);
