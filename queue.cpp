@@ -97,3 +97,4 @@ bool queue<T>::isEmpty() const
 }
 
 template class queue<char>;
+template class queue<uint8_t>;
