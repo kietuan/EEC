@@ -6,7 +6,7 @@
 //char new_char; 
 extern int const unit_delay = 50; //ms
 void dot() {
-    Serial.print(".");
+    //Serial.print(".");
     digitalWrite(output_pin, HIGH);
     delay(unit_delay);
 
@@ -14,7 +14,7 @@ void dot() {
     delay(unit_delay);
 }
 void dash() {
-    Serial.print("-");
+    //Serial.print("-");
     digitalWrite(output_pin, HIGH);
     delay(unit_delay * 3);
 
