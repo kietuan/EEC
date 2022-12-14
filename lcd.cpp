@@ -16,6 +16,8 @@ void readFromKeyboard()
                 LCDqueue.clear();
                 break;
             case 0x0d: //gặp Enter, bắt đầu xả
+                lcd.clear();
+                lcd.print("PROCESSING...");
                 transmitData(LCDqueue);
                 lcd.clear();
                 break;
@@ -23,6 +25,7 @@ void readFromKeyboard()
                 if      (LCDqueue.getSize() % 32 == 0 ) lcd.clear();
                 else if (LCDqueue.getSize() % 32 == 16) lcd.setCursor(0,1);
                 LCDqueue.push(character);
+                lcd.write(character);
                 break;
         }
     }
