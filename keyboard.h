@@ -39,7 +39,7 @@ public:
     void    init();
     void    push (uint8_t);
     void    clear();
-    int     read(); //đọc ký tự tiếp theo chỉ khi gặp trúng được _ENTER
+    char     read(); //đọc ký tự tiếp theo chỉ khi gặp trúng được _ENTER
     uint8_t readScanCode() const;
     bool    available() const; //Nếu sẵn có chữ trong buffers để đọc
 

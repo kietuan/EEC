@@ -160,7 +160,15 @@ bool ps2keyboard::available() const
     return !(buffer.isEmpty());
 }
 
- void ps2keyboard::transmitData()
+char ps2keyboard::read()
+{
+    char temp = this->buffer.front();
+    this->buffer.pop();
+
+    return temp;
+}
+
+void ps2keyboard::transmitData()
 {
     if (keyboard.buffer.back() != 0x0d) return;
 
