@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "LiquidCrystal.h"
+#include <LiquidCrystal.h>
 
 #include "keyboard.h"
 #include "lcd.h"
