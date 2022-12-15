@@ -26,6 +26,10 @@ void readFromKeyboard()
                 else if (LCDqueue.getSize() % 32 == 16) lcd.setCursor(0,1);
                 LCDqueue.push(character);
                 lcd.write(character);
+                if (LCDqueue.getSize() == 64) //ngăn chặn overflow bộ nhớ
+                {
+                    goto case 0x0d;
+                }
                 break;
         }
     }
