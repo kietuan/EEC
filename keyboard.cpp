@@ -1,7 +1,7 @@
 #include "keyboard.h"
 
 
-volatile ps2keyboard keyboard; //định nghĩa
+ps2keyboard keyboard; //định nghĩa
 
 
 
