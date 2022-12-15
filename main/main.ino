@@ -14,8 +14,8 @@ void setup()
     lcd.setCursor(0,0);
     lcd.cursor();
     lcd.blink();
-    lcd.write("Hello");
-    delay(5000);
+    //lcd.write("Hello");
+    //delay(5000);
     lcd.clear();    
 }
 

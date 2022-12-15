@@ -8,6 +8,7 @@ ps2keyboard keyboard; //định nghĩa
 void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy lên màn hình, Nhận scancode, xuất ra mã ascii
 {
     char character = 0;
+    static char prevChar = 0;
 
     switch (scancode)
     {
@@ -96,8 +97,10 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
 
     if (character) //bắt đầu viết lên
     {
-        keyboard.buffer.push(character); //vô buffer
+        if (!(character == ' ' && prevChar == ' '))
+            keyboard.buffer.push(character); //vô buffer
         //Serial.println(character);
+        prevChar = character;
     }
 }
 
@@ -128,7 +131,7 @@ void ps2interrupt()
     {   
         scancode = (rawvalue >> 1) & 0x00ff; //chuyển được về thứ cần có
 
-        if (prevScancode != 0xf0 && !(prevScancode == 0x29 && scancode == 0x29 )) //bắt đầu push vào cái queue, những tín hiệu chưa được xử lý; loại bỏ tín hiệu break và 0xf0
+        if (prevScancode != 0xf0) //bắt đầu push vào cái queue, những tín hiệu chưa được xử lý; loại bỏ tín hiệu break và 0xf0
         {
             keyboard.push(scancode);
             //Serial.println(scancode, HEX);
