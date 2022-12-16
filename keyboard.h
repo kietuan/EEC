@@ -24,6 +24,7 @@
 
 class ps2keyboard;
 extern ps2keyboard keyboard; //1 biến global dùng để lưu trữ 1 bàn phím hiện tại; forward declare
+extern void(* resetFunc) ();
 
 
 

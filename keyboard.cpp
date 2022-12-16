@@ -16,6 +16,10 @@ void ps2keyboard::push(uint8_t scancode) //mỗi lần nhấn là phải đẩy 
             
         case 0x66: character = 0x08; break; 
 
+	case 0x76://reset everything
+	     resetFunc();
+	     break;
+
         case 0x45:
             character = '0'; break;
         case 0x16:
