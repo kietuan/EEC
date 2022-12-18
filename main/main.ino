@@ -21,10 +21,8 @@ void setup()
 
 void loop() 
 {
-  
   while(keyboard.available())
   {
       readFromKeyboard();
   }
-  digitalWrite(output_pin, LOW);
 }
