@@ -25,4 +25,5 @@ void loop()
   {
       readFromKeyboard();
   }
+  digitalWrite(output_pin, LOW);
 }
